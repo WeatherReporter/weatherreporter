@@ -1,0 +1,25 @@
+
+%form{:action => "/form",  :method => "post"}
+  .form-group
+    %label Street Address:
+    %input{:class => 'form-control', :type => 'text', :name => 'street_address', :value => '115 Broadway'}
+  .form-group
+    %label City:
+    %input{:class => 'form-control', :type => 'text', :name => 'city', :value => 'New York'}
+  .form-group
+    %label State/Territory/Province:
+    %input{:class => 'form-control', :type => 'text', :name => 'state'}
+  .form-group
+    %label Country:
+    %input{:class => 'form-control', :type => 'text', :name => 'country'}
+  .form-group
+    %label Date:
+    %input{:class => 'form-control', :type => 'date', :name => 'date', :value => '2015-03-25'}
+  .form-group
+    %label Event Type:
+    %select{:class => 'form-control', :type => 'event_type', :name => 'event_type'}
+      <option value="picnic">Picnic</option>
+      <option value="bowling">Bowling</option>
+      <option value="skiing">Skiing</option>
+
+  %input{:type => "submit", :value => "Send", :class => "button btn-primary btn"}

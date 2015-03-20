@@ -1,0 +1,33 @@
+%h3
+  = "Weather for your event on #{@date}:"
+%p
+  = @weather.upcase
+%p
+  = @weather_detailed.upcase
+%p
+  = "#{@temp.floor} F"
+
+- if @weather == 'Snow'
+  %img{src: "https://38.media.tumblr.com/tumblr_md36doz8ah1r2zu7yo1_500.gif", width: "475px"}}
+- if @weather == 'Rain'
+  %img{src: "https://33.media.tumblr.com/tumblr_lv6bvbfp6e1r1yutvo1_500.gif", width: "475px"}}
+- if @weather == 'Clouds'
+  %img{src: "https://31.media.tumblr.com/tumblr_m2o14n6qTP1rn0y7so1_500.gif", width: "475px"}}
+- if @weather == 'Clear'
+  %img{src: "https://33.media.tumblr.com/2d6ed5d6a3452f5a7cb59030d441e5b2/tumblr_n3pw69gaXU1spbf2wo1_400.gif", width: "475px"}
+
+%br
+%hr
+- if @event_type == "picnic" && @weather != "Clear"
+  %h3 Looks like bad weather.
+  %p You should move your event to #{@alternative_city}, #{@alternative_country}.
+  %img{src: @alternative_place_img, width: "475px"}
+- if @event_type == "bowling" && @weather == "Clear"
+  %h3 Looks like great weather!
+  %p Considering moving your indoor event to #{@alternative_city}, #{@alternative_country}.
+  %img{src: @alternative_place_img,  width: "475px"}
+- if @event_type == "skiing" && @weather != "Snow"
+  %h3 Hmm, no snow upcoming at your planned location.
+  %p Looks snowy in #{@alternative_city}, #{@alternative_country}.
+  %img{src: @alternative_place_img,  width: "475px"}
+
