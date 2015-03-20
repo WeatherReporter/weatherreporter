@@ -1,2 +1,2 @@
-require './hello'
+require './weather_reporter'
 run Sinatra::Application
