@@ -7,13 +7,13 @@ require 'pry'
 require 'mongo'
 #require 'bson_ext'
 
-include Mongo
+#include Mongo
 
-configure do
-  conn = MongoClient.new("localhost", 27017)
-  set :mongo_connection, conn
-  set :mongo_db, conn.db('test')
-end
+#configure do
+#  conn = Mongo::Client.new(['127.0.0.1:27017'], database: 'test')
+#  set :mongo_connection, conn
+  #set :mongo_db, conn.db('test')
+#end
 
 WEATHER_TYPES = ['Clear','Rain', 'Clouds', 'Snow']
 EVENT_TYPES= {"picnic" => 'Clear',
@@ -27,6 +27,7 @@ get '/' do
 end
 
 post '/form' do
+  binding.pry
   full_address = "#{params[:street_address]} #{params[:city]} #{params[:state]} #{params["country"]}"
   Geocoder.configure(:timeout => 5)
   latitude, longitude = Geocoder.coordinates(full_address)
@@ -43,12 +44,12 @@ post '/form' do
     end
   end
   #file = File.read('weather_reporter.json')
-  event_weather = EVENT_TYPES[@event_type]
-  alternative_location = find_random_city_based_on_weather(event_weather)
-  @alternative_city = alternative_location['city']['name']
-  @alternative_country = alternative_location['city']['country']
+#  event_weather = EVENT_TYPES[@event_type]
+#  alternative_location = find_random_city_based_on_weather(event_weather)
+#  @alternative_city = alternative_location['city']['name']
+#  @alternative_country = alternative_location['city']['country']
 
-  @alternative_place_img = get_random_city_picture_url(@alternative_city, @alternative_country)
+#  @alternative_place_img = get_random_city_picture_url(@alternative_city, @alternative_country)
 
   haml :weather_report
 end
